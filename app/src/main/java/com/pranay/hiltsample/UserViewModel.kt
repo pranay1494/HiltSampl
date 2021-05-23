@@ -12,12 +12,17 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class UserViewModel @Inject constructor(val userRepository: UserRepository) : BaseViewModel(){
+class UserViewModel @Inject constructor(val userRepository: UserRepository,val helloPrinter: HelloPrinter) : BaseViewModel(){
 
     private val userData = MutableLiveData<DisplayData>()
     fun getData(): LiveData<DisplayData> = userData
 
+
+    private val printerData = MutableLiveData<String>()
+    fun _PrinterData(): LiveData<String> = printerData
+
     fun fetchUser(name: String) = viewModelScope.launch{
+        printerData.postValue(helloPrinter.print())
         kotlin.runCatching{
             val fetchRepository = userRepository.fetchRepository(name)
             userData.value = getUserDisplayData(fetchRepository)

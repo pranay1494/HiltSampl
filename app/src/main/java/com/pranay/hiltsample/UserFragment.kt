@@ -2,6 +2,7 @@ package com.pranay.hiltsample
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.pranay.hiltsample.base.BaseViewModel
@@ -28,6 +29,10 @@ class UserFragment: BaseFragment() {
         mViewModel.getData().observe(viewLifecycleOwner, Observer {
             textView.text = it.name
             imageView.loadImage(it.avatarUrl)
+        })
+
+        mViewModel._PrinterData().observe(viewLifecycleOwner, Observer {
+            Toast.makeText(requireContext(),it,Toast.LENGTH_SHORT).show()
         })
     }
 

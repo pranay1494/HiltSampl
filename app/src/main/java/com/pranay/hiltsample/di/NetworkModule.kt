@@ -50,4 +50,5 @@ class NetworkModule {
 
     @Provides
     internal fun provideUserApi(retrofit: Retrofit) = retrofit.create(UserApi::class.java)
+
 }
