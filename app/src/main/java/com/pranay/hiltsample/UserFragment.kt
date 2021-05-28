@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.pranay.customviews.CustomActivity
 import com.pranay.hiltsample.base.BaseViewModel
 import com.pranay.hiltsample.base.BaseFragment
 import com.pranay.hiltsample.utils.loadImage
@@ -23,6 +24,10 @@ class UserFragment: BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         observeData()
         fetchData()
+
+        btnSubmit.setOnClickListener {
+            requireActivity().startActivity(CustomActivity.createIntent(requireContext()))
+        }
     }
 
     private fun observeData() {

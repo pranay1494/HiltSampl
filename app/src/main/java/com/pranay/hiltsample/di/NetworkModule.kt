@@ -1,6 +1,8 @@
 package com.pranay.hiltsample.di
 
+import com.pranay.customviews.ICustomView
 import com.pranay.hiltsample.BuildConfig
+import com.pranay.hiltsample.ICustomViewImpl
 import com.pranay.hiltsample.api.UserApi
 import dagger.Module
 import dagger.Provides
@@ -51,4 +53,9 @@ class NetworkModule {
     @Provides
     internal fun provideUserApi(retrofit: Retrofit) = retrofit.create(UserApi::class.java)
 
+    @Singleton
+    @Provides
+    internal fun providePrintableString(): ICustomView{
+        return ICustomViewImpl()
+    }
 }
